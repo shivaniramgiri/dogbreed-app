@@ -2,7 +2,7 @@
   <div class="about">
     <h1 style="text-align:center">SubBreed of {{ subbreed }}</h1>
 
-    <div v-if="displaySubBreed > 0">
+    <div  id="div2" v-if="displaySubBreed">
       <grid-layout
         :layout.sync="subBreedlist"
         :row-height="30"
@@ -24,20 +24,20 @@
       </grid-layout>
     </div>
     <div v-else>
-      <p>for {{ subbreed }} No subbreeds avaliable</p>
+      <p id="p2">for {{ subbreed }} no subbreeds avaliable</p>
     </div>
   </div>
-</template>
+</template>   
 <script>
 import { mapGetters, mapActions } from "vuex";
 import subbreed from "../mixins/subbreed";
 export default {
   name: "SubBreed",
-  data() {
-    return {
-      subBreedlistlength: 0
-    };
-  },
+  // data() {
+  //   return {
+  //     displaySubBreed:false
+  //   };
+  // },
 
   mixins: [subbreed],
 
@@ -48,10 +48,16 @@ export default {
     ...mapGetters(["allSubBreeds", "subbreed"]), //using getters in store
 
     displaySubBreed() {
-      let l = [];
+      let l, result;
       l = this.allSubBreeds;
       this.createSubreedlist(this.allSubBreeds, this.subbreed); // getting this method from mixin
-      return l.length;
+      let len = l.length;
+      if (len) {
+        result = true;
+      } else {
+        result = false;
+      }
+      return result;
     }
   },
 

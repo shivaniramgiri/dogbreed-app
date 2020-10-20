@@ -77,10 +77,13 @@
 import { getAll, getRandomImageOfBreed } from "@/Breeds.service.js";
 import subbreed from "../mixins/subbreed";
 import { mapMutations } from "vuex";
-
+//import VueGridLayout from "vue-grid-layout";
 export default {
   name: "Home",
-
+  // //  components: {
+  //  gridlayout: VueGridLayout.GridLayout,
+  //   griditem: VueGridLayout.GridItem
+  // },
   data() {
     return {
       breedsKeys: [],

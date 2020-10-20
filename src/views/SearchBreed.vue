@@ -28,8 +28,13 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from "vuex";
+//import VueGridLayout from "vue-grid-layout";
 export default {
   name: "SearchBreed",
+  // components: {
+  //   GridLayout: VueGridLayout.GridLayout,
+  //   GridItem: VueGridLayout.GridItem
+  // },
   data() {
     return {
       selectedValue: "affenpinscher" // defalut select value
@@ -63,10 +68,5 @@ export default {
   width: 250px;
   height: 200px;
 }
-.column {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  display: block;
-}
+
 </style>

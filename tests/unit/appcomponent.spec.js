@@ -1,10 +1,10 @@
-import { shallowMount, createLocalVue } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import VueRouter from "vue-router";
 import App from "@/App.vue";
 import Home from "@/views/Home.vue";
 import SubBreed from "@/views/SubBreed";
 import SearchBreed from "@/views/SearchBreed.Vue";
-
+import Vue from "vue";
 describe("In app component ", () => {
   let appWrapper;
   const router = new VueRouter(
@@ -15,8 +15,18 @@ describe("In app component ", () => {
 
   beforeEach(() => {
     const localVue = createLocalVue();
+    Vue.config.ignoredElements = [
+      "grid-layout",
+      "grid-item",
+      "b-navbar",
+      "b-navbar-brand",
+      "b-navbar-toggle",
+      "b-collapse",
+      "b-navbar-nav",
+      "b-nav-item"
+    ];
     localVue.use(VueRouter);
-    appWrapper = shallowMount(App, {
+    appWrapper = mount(App, {
       localVue,
       router
     });
@@ -43,5 +53,12 @@ describe("In app component ", () => {
     const text = appWrapper.find("b-navbar-brand").text();
     expect(text).toMatch("Dog Breed");
   });
-  // it('it have nav-item with text ')
+  it("it have nav-item with text Home", async () => {
+    const text = appWrapper.find("b-nav-item").text();
+    const byherf = appWrapper.find("b-nav-item").attributes("href");
+    expect(byherf).toMatch("/");
+    expect(text).toMatch("Home");
+    //await router.push("/");
+    //expect(router.currentRoute.fullPath).to.eq("/");
+  });
 });
